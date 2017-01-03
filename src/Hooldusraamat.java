@@ -1,8 +1,14 @@
 import java.util.Scanner;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -13,24 +19,35 @@ import javafx.event.Event;
 public class Hooldusraamat extends Application {
 
     public static void main(String[] args) {
-
         launch(args);
-
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Vajuta, kui julged");
+    public void start(Stage aken) throws Exception {
 
-        Button nupp;
-        nupp = new Button();
-        nupp.setText("DOOMSDAY");
+        aken.setTitle("Hooldusraamat");
 
-        StackPane kujundus = new StackPane();
-        kujundus.getChildren().add(nupp);
+        GridPane paan = new GridPane();
+        paan.setHgap(10);
+        paan.setVgap(10);
+        paan.setPadding(new Insets(30, 30, 30, 30));
 
-        Scene lava = new Scene(kujundus, 300, 300);
-        primaryStage.setScene(lava);
-        primaryStage.show();
+        Label margiSilt = new Label("Automark");
+        GridPane.setConstraints(margiSilt, 0, 0);
+
+        TextField autoMark = new TextField();
+        GridPane.setConstraints(autoMark, 1, 0);
+
+        Label lsSilt = new Label("Läbisõit");
+        GridPane.setConstraints(lsSilt, 0, 1);
+
+        TextField ls = new TextField();
+        GridPane.setConstraints(ls, 1, 1);
+
+        paan.getChildren().addAll(margiSilt, autoMark, lsSilt, ls);
+
+        Scene stseen = new Scene(paan, 900, 600);
+        aken.setScene(stseen);
+        aken.show();
     }
 }
