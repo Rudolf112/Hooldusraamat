@@ -25,8 +25,6 @@ public class Hooldusraamat extends Application {
     @Override
     public void start(Stage aken) throws Exception {
 
-        aken.setTitle("Hooldusraamat");
-
         GridPane paan = new GridPane();
         paan.setHgap(10);
         paan.setVgap(10);
@@ -34,20 +32,35 @@ public class Hooldusraamat extends Application {
 
         Label margiSilt = new Label("Automark");
         GridPane.setConstraints(margiSilt, 0, 0);
-
         TextField autoMark = new TextField();
         GridPane.setConstraints(autoMark, 1, 0);
 
         Label lsSilt = new Label("Läbisõit");
         GridPane.setConstraints(lsSilt, 0, 1);
-
         TextField ls = new TextField();
         GridPane.setConstraints(ls, 1, 1);
 
-        paan.getChildren().addAll(margiSilt, autoMark, lsSilt, ls);
+        Button Salvesta = new Button("Salvesta");
+        GridPane.setConstraints(Salvesta, 0, 10);
+        Salvesta.setOnAction(e -> onNumber(ls, ls.getText()));
+
+        paan.getChildren().addAll(margiSilt, autoMark, lsSilt, ls, Salvesta);
 
         Scene stseen = new Scene(paan, 900, 600);
         aken.setScene(stseen);
+        aken.setTitle("Hooldusraamat");
         aken.show();
+    }
+    private boolean onNumber(TextField sisend, String teade)
+    {
+        try {
+            int ls = Integer.parseInt(sisend.getText());
+            System.out.println("Sisend on number");
+            return true;
+        }
+        catch(NumberFormatException e){
+            System.out.println("Sisend ei ole number");
+            return false;
+        }
     }
 }
