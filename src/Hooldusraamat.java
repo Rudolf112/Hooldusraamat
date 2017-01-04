@@ -1,18 +1,11 @@
-import java.util.Scanner;
-
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Circle;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import javafx.event.Event;
 /**
  * Created by rudolf on 8.10.2016.
  */
@@ -42,7 +35,15 @@ public class Hooldusraamat extends Application {
 
         Button Salvesta = new Button("Salvesta");
         GridPane.setConstraints(Salvesta, 0, 10);
-        Salvesta.setOnAction(e -> onNumber(ls, ls.getText()));
+        Salvesta.setOnAction(e -> {
+            if (onNumber(ls)==true){
+                System.out.println("Sain kätte true ja võin info ära salvestada");
+            }
+            else{
+                System.out.println("Ei saanud kätte true, kuskil lahtris ei asu number!");
+            }
+        }
+        );
 
         paan.getChildren().addAll(margiSilt, autoMark, lsSilt, ls, Salvesta);
 
@@ -51,7 +52,7 @@ public class Hooldusraamat extends Application {
         aken.setTitle("Hooldusraamat");
         aken.show();
     }
-    private boolean onNumber(TextField sisend, String teade)
+    private boolean onNumber(TextField sisend) //https://www.youtube.com/watch?v=cwJK_WpseKQ
     {
         try {
             int ls = Integer.parseInt(sisend.getText());
