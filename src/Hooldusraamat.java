@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
@@ -28,15 +29,28 @@ public class Hooldusraamat extends Application {
         TextField autoMark = new TextField();
         GridPane.setConstraints(autoMark, 1, 0);
 
-        Label lsSilt = new Label("Läbisõit");
+        Label lsSilt = new Label("Hetkeläbisõit (km)");
         GridPane.setConstraints(lsSilt, 0, 1);
         TextField ls = new TextField();
         GridPane.setConstraints(ls, 1, 1);
 
+        Label olivahetusSilt = new Label("Järgmine mootoriõli vahetus (km)");
+        GridPane.setConstraints(olivahetusSilt, 0, 2);
+        TextField olivahetus = new TextField();
+        GridPane.setConstraints(olivahetus, 1, 2);
+
+        Label kysimus = new Label("Milliseid featuure soovid autol jälgida?");
+        GridPane.setConstraints(kysimus, 0, 3);
+
+        CheckBox ylevaatuse_aeg = new CheckBox("Ülevaatuse aeg");
+        GridPane.setConstraints(ylevaatuse_aeg, 0, 4);
+        CheckBox poliisi_kehtivus = new CheckBox("Kindlustuspoliisi kehtivus");
+        GridPane.setConstraints(poliisi_kehtivus, 1, 4);
+
         Button Salvesta = new Button("Salvesta");
-        GridPane.setConstraints(Salvesta, 0, 10);
+        GridPane.setConstraints(Salvesta, 0, 40);
         Salvesta.setOnAction(e -> {
-            if (onNumber(ls)==true){
+            if (onNumber(ls) && onNumber(olivahetus)){
                 System.out.println("Sain kätte true ja võin info ära salvestada");
             }
             else{
@@ -45,7 +59,8 @@ public class Hooldusraamat extends Application {
         }
         );
 
-        paan.getChildren().addAll(margiSilt, autoMark, lsSilt, ls, Salvesta);
+        paan.getChildren().addAll(margiSilt, autoMark, lsSilt, ls,
+                olivahetusSilt, olivahetus, kysimus, ylevaatuse_aeg, poliisi_kehtivus, Salvesta);
 
         Scene stseen = new Scene(paan, 900, 600);
         aken.setScene(stseen);
